@@ -1,0 +1,291 @@
+html{
+	background-color: #999;
+	text-align: center;
+	 background: #f4f4f4 url(../images/bg.jpg) repeat top left; 
+}
+.container{
+	width: 90%;
+	margin: 0 auto;
+}
+.main{
+	margin: 10px auto 50px;
+}
+#gamepanel{
+	position: relative;
+	width: 470px;
+	height: 550px;
+	margin: 0 auto;
+	background-color: #fff;
+    border: 2px outset #000066;
+	border-radius: 5px;
+	overflow: hidden;
+}
+#wordpanel{
+	background-color: #fff;
+  border: 2px outset #000066;
+	border-radius: 5px;
+	width: 470px;
+	margin:10px auto;
+}
+#word{
+	padding-bottom: 10px;
+	font-family: cursive;
+	font-size: 35px;
+	line-height: 40px;
+	text-transform: uppercase;
+	color:#000066;
+}
+#word span{
+	padding: 0 10px;
+}
+#guesses{
+	font-family: cursive;
+	font-size: 20px;
+	line-height: 20px;
+	color:#999;
+
+	
+}
+#guesses font{
+	padding: 0 5px;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration:line-through;
+}
+#lives{
+	color: green;
+}
+.gameimg{
+	position: absolute;
+	right: 0;
+	width: 470px;
+	height: 550px;
+}
+.hide{
+	display: none;
+}
+.ilive {
+  width: 15px;
+  height: 25px;
+	margin-bottom: -5px;
+}	
+.off{
+	opacity: 0.2;
+}
+.board{
+	padding: 10px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 25px;
+	font-weight: bold;
+	line-height: 30px;
+	color:#333;
+}
+.frmctrl{
+	width: 140px;
+	font-size: 22px;
+	color: #000066;
+	font-weight: bold;
+	background-color: #ccc;
+	border-radius: 10px;
+	padding: 5px;
+}
+.hr-h{
+	margin: 0;
+	border-color: #000066;
+}
+.m1{
+	margin-left: 0.5rem;
+}
+.m2{
+	margin-left: 1rem;
+}
+.m3{
+	margin-left: 2rem;
+}
+#wins{
+	color: #000066;
+}
+#loses{
+	color: #660000;
+}
+#showword{
+	font-family: 'Shrikhand', cursive;
+	text-transform: capitalize;
+  font-size: 72px;
+  line-height: 100px;
+  background: -webkit-linear-gradient(yellow, orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#catlabel{
+	font-size: 25px;
+	color: #663300;		
+	text-transform: capitalize;
+}
+#nextbtn{
+	margin-bottom: 10px;
+}
+#footer {
+	background-color: #666;
+	color: #ccc;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	line-height: 40px;
+	border-top: 2px solid #000066;
+	text-align: center;	
+	font-size: 14px
+}
+/*font-family: 'Shrikhand', cursive;
+font-family: 'Permanent Marker', cursive;*/
+@media only screen and (min-width: 1100px){
+	.main{
+		margin: 150px auto;
+		display: -webkit-inline-box;
+		display: -ms-inline-flexbox;
+		display: inline-flex;
+	}
+	#gamepanel{
+	    margin: 0 10px;		
+	}
+	#wordpanel{
+		background-color: #fff;
+	    border: 2px outset #000066;
+		border-radius: 5px;
+		width: 470px;
+	    height: 550px;
+	    margin: 0 10px;
+		padding: 0;	
+	}
+	#word {
+	    padding: 20px 0;
+	}
+	.board {
+	    padding: 25px 0;
+	}
+	.hr-h {
+	    margin: 0;
+	}
+	.ilive{
+		width: 20px;
+		height: 36px;
+	}
+}
+@media only screen and (max-width: 600px){
+	#main{
+		width:100%;
+		margin:0 auto;
+	}
+	#gamepanel{
+		width: 320px;
+		height: 374px;
+		margin: 5px auto;		
+	}
+	.gameimg{
+		width: 320px;
+		height: 374px;
+	}
+	#wordpanel{
+		width: 320px;
+		margin:10px auto 50px;
+	}	
+	#word{
+		margin: 10px 0;		
+		font-size: 30px;
+		line-height: 35px;
+	}
+	.board{
+		padding: 15px 0;
+		font-size: 18px;
+		line-height: 20px;
+	}
+	.board span{
+		font-size: 20px;
+	}
+	.ilive {
+    width: 10px;
+    height: 20px;
+	}
+	.frmctrl{
+		width: 100px;
+		font-size: 18px;
+		border-radius: 5px;
+		padding: 5px;
+	}
+	.m3 {
+	    margin-left: 2rem;
+	}
+	.hr-h {
+    	margin: 0;
+    }
+	#catlabel{
+		font-size: 20px;
+	}
+	#footer {
+		line-height: 40px;
+		border-top: 2px solid #000066;
+	}    
+}
+
+#hangman9b{
+  -webkit-animation: fail 2s ease-in;
+          animation: fail 2s ease-in;
+  top: 450px;
+}
+
+@-webkit-keyframes fail {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 400px;
+  }
+}
+@keyframes fail {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 400px;
+  }
+}
+
+#hangman9d{
+  -webkit-animation: lose 2.5s ease;
+          animation: lose 2.5s ease;
+  opacity: 1;
+}
+@-webkit-keyframes lose {
+  0% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes lose {
+  0% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.blink_me {
+  -webkit-animation: blinker 1s linear infinite;
+          animation: blinker 1s linear infinite;
+}
+
+@-webkit-keyframes blinker {  
+  50% { opacity: 0.1; }
+}
+
+@keyframes blinker {  
+  50% { opacity: 0.1; }
+}

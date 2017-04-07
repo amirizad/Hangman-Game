@@ -5,14 +5,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hangman Game</title>
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Permanent+Marker|Shrikhand" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+  <div class="container">
+    <div class="main">
+      <div id="gamepanel">
+          <img class="gameimg" id="hangmanintro" src="assets/images/hangman.jpg" alt="Hangman">
+          <img class="gameimg hide" id="hangman0" src="assets/images/hangman0.jpg" alt="Hangman">
+          <img class="gameimg hide" id="hangman1" src="assets/images/hangman1.jpg" alt="Hangman">
+          <img class="gameimg hide" id="hangman2" src="assets/images/hangman2.jpg" alt="Hangman">
+          <img class="gameimg hide" id="hangman3" src="assets/images/hangman3.jpg" alt="Hangman">
+          <img class="gameimg hide" id="hangman4" src="assets/images/hangman4.jpg" alt="Hangman">
+          <img class="gameimg hide" id="hangman5" src="assets/images/hangman5.jpg" alt="Hangman">
+          <img class="gameimg hide" id="hangman6" src="assets/images/hangman6.jpg" alt="Hangman">
+          <img class="gameimg hide" id="hangman7" src="assets/images/hangman7.jpg" alt="Hangman">
+          <img class="gameimg hide" id="hangman8" src="assets/images/hangman8.jpg" alt="Hangman">
+          <div id="hangmanl" class="hide">
+            <audio id="wordfailed" src="assets/sounds/failed2.wav"></audio>
+            <img class="gameimg" id="hangman9a" src="assets/images/hangman9.jpg" alt="Hangman">
+            <img class="gameimg" id="hangman9b" src="assets/images/hangman9.png" alt="Hangman">
+            <img class="gameimg" id="hangman9c" src="assets/images/hangman9-.png" alt="Hangman">
+            <img class="gameimg" id="hangman9d" src="assets/images/hangmanf.jpg" alt="Hangman">
+          </div>
+          <div id="hangmanw" class="hide">
+            <audio id="wordsucceeded" src="assets/sounds/succeed2.wav"></audio>
+            <img class="gameimg " id="hangmanw1" src="assets/images/hangmanw.jpg" alt="Hangman">
+            <span id="showword" class="blink_me"></span>
+          </div>
 
-
-
-
+      </div>
+      <form id="wordpanel">
+        <input type="hidden" id="curobj" name="curobj" value="">
+        <p class="board">Category:
+          <select id="category" name="category" class="frmctrl m1">
+            <option value="namesObj">Names</option>
+            <option value="colorsObj">Colors</option>
+            <option value="statesObj">US States</option>
+          </select>
+          <button id="startbtn" name="startbtn" value="start" class="frmctrl">Start</button>
+        </p>
+        <hr class="hr-h">
+        <audio id="lettersucceeded" src="assets/sounds/succeed1.wav"></audio>
+        <audio id="letterfailed" src="assets/sounds/failed1.wav"></audio>
+        <p id="word"></p>
+        <p id="guesses" class="board"></p>
+        <p id="lives" class="board">Lives:<font class="m1" id="remlive">10</font>
+          <img id="live0" src="assets/images/s-hangman.png" alt="live" class="m3 ilive">
+          <img id="live1" src="assets/images/s-hangman.png" alt="live" class="ilive">
+          <img id="live2" src="assets/images/s-hangman.png" alt="live" class="ilive">
+          <img id="live3" src="assets/images/s-hangman.png" alt="live" class="ilive">
+          <img id="live4" src="assets/images/s-hangman.png" alt="live" class="ilive">
+          <img id="live5" src="assets/images/s-hangman.png" alt="live" class="ilive">
+          <img id="live6" src="assets/images/s-hangman.png" alt="live" class="ilive">
+          <img id="live7" src="assets/images/s-hangman.png" alt="live" class="ilive">
+          <img id="live8" src="assets/images/s-hangman.png" alt="live" class="ilive">
+          <img id="live9" src="assets/images/s-hangman.png" alt="live" class="ilive">
+        </p>
+        <hr class="hr-h">
+        <p class="board"><font>Wins:</font><span class="m1" id="wins">0</span><font class="m3">Loses:</font><span class="m1" id="loses">0</span></p>
+        <hr class="hr-h">
+        <p class="board"><font>Category:</font><span class="m1" id="catlabel">name</span><font class="m3" id="lettercounter">(<font id="letters">3</font>&nbsp;Letters)</font></p>
+        <p>
+          <button id="nextbtn" name="nextbtn" value="next" class="frmctrl">Next</button>
+        </p>
+      </form>
+    </div>
+  </div>
+  <div id="footer" class="center">
+    <div>&copy; Copyright <script>document.write(new Date().getFullYear())</script> Amir Izadpanah</div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="assets/js/game.js"></script>
 </body>
 </html>
