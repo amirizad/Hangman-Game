@@ -13,7 +13,8 @@
   <div class="container">
     <div class="main">
       <div id="gamepanel">
-          <img class="gameimg" id="hangmanintro" src="assets/images/hangman.jpg" alt="Hangman">
+          <img class="gameimg" id="startup" src="assets/images/startup.jpg" alt="Hangman">
+          <img class="gameimg hide" id="hangman" src="assets/images/hangman.jpg" alt="Hangman">
           <img class="gameimg hang hide" id="hangman0" src="assets/images/hangman0.jpg" alt="Hangman">
           <img class="gameimg hang hide" id="hangman1" src="assets/images/hangman1.jpg" alt="Hangman">
           <img class="gameimg hang hide" id="hangman2" src="assets/images/hangman2.jpg" alt="Hangman">
@@ -50,11 +51,11 @@
         <hr class="hr-h">
         <audio id="lettersucceeded" src="assets/sounds/succeed1.wav"></audio>
         <audio id="letterfailed" src="assets/sounds/failed1.wav"></audio>
+        <input type="text" id="forkeyboard" class="forkb" value="">
         <p id="word"></p>
         <p id="guesses" class="board"></p>
         <p id="lives" class="board">Lives:<font class="m1" id="remlive">10</font>
-          <img id="live0" src="assets/images/s-hangman.png" alt="live" class="m3 ilive">
-          <img id="live1" src="assets/images/s-hangman.png" alt="live" class="ilive">
+          <img id="live1" src="assets/images/s-hangman.png" alt="live" class="m3 ilive">
           <img id="live2" src="assets/images/s-hangman.png" alt="live" class="ilive">
           <img id="live3" src="assets/images/s-hangman.png" alt="live" class="ilive">
           <img id="live4" src="assets/images/s-hangman.png" alt="live" class="ilive">
@@ -63,6 +64,7 @@
           <img id="live7" src="assets/images/s-hangman.png" alt="live" class="ilive">
           <img id="live8" src="assets/images/s-hangman.png" alt="live" class="ilive">
           <img id="live9" src="assets/images/s-hangman.png" alt="live" class="ilive">
+          <img id="live10" src="assets/images/s-hangman.png" alt="live" class="ilive">
         </p>
         <hr class="hr-h">
         <p class="board"><font>Wins:</font><span class="m1" id="wins">0</span><font class="m3">Loses:</font><span class="m1" id="loses">0</span></p>
