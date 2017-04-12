@@ -34,24 +34,26 @@ $(window).on('load', function () {
 	
 	//keybord key listener
 	$(document).on('keyup', function(event){
-		var legKey = true;
-		var letter = event.key.toLowerCase();
-		var obj = HangMan[curObjName];
-		if ( event.which < 65 || event.which > 90) {
-			legKey = false;
-		}else{
-			for( i = 0 ; i < obj.guesses.length ; i++){
-				if(letter === obj.guesses[i]){
-					legKey = false;
-					break;
+		if(HangMan.gameReady){
+			var legKey = true;
+			var letter = event.key.toLowerCase();
+			var obj = HangMan[curObjName];
+			if ( event.which < 65 || event.which > 90) {
+				legKey = false;
+			}else{
+				for( i = 0 ; i < obj.guesses.length ; i++){
+					if(letter === obj.guesses[i]){
+						legKey = false;
+						break;
+					};
 				};
 			};
-		};
-		if (legKey) {
-			processLetter(event.key.toLowerCase());
-		}else{
-			event.preventDefault();
-		}; 
+			if (legKey) {
+				processLetter(event.key.toLowerCase());
+			}else{
+				event.preventDefault();
+			};
+		}
 	});		
 });
 
@@ -79,6 +81,7 @@ function changeCategory(){
 
 //Creating objects for all categories
 function createObjects(){
+	HangMan.gameReady = true;
 	HangMan.namesObj = Object.create(gameObj);
 	HangMan.colorsObj = Object.create(gameObj);
 	HangMan.statesObj = Object.create(gameObj);
@@ -97,6 +100,7 @@ function createObjects(){
 //Set a clear Hangman object
 function setObject(objectName){
 	var obj = HangMan[objectName];
+	HangMan.gameReady = true;	
 	obj.category = $('#category option[value=' + objectName + ']').text();
 	obj.word = obj.words[Math.floor(Math.random() * obj.words.length)].toLowerCase();
 	obj.wins = 0;
@@ -111,6 +115,7 @@ function setObject(objectName){
 //Updating the current category object to next word
 function updateObject(objectName){
 	var obj = HangMan[objectName];
+	HangMan.gameReady = true;
 	obj.word = obj.words[Math.floor(Math.random() * obj.words.length)].toLowerCase();
 	obj.lives = 10;
 	obj.guesses = [];
@@ -196,12 +201,16 @@ function processLetter(letter){
 		$('#hangmanw').removeClass('hide');
 		$('#showword').html(word);
 		obj.wins++;
-		$('#wins').html(parseInt($('#wins').html()) + 1);		
+		$('#wins').html(parseInt($('#wins').html()) + 1);
+		HangMan.gameReady = false;
+		$('#nextbtn').focus();
 	}else if (falseg.length === 10){
 		$('#hangmanl').removeClass('hide');
 		var wordfailed = document.getElementById("wordfailed");
 		wordfailed.play();
 		obj.loses++;
 		$('#loses').html(parseInt($('#loses').html()) + 1);
+		HangMan.gameReady = false;
+		$('#nextbtn').focus();
 	};
 };
