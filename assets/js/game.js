@@ -174,7 +174,8 @@ function processLetter(letter){
  		falseg.push(letter);
  		var font = '<font>'+ letter +'</font>';
  		$('#guesses').append(font);
- 		if ( falseg < 9 ) {$('#hangman' + falseg).removeClass('hide')};
+ 		var falsegC = falseg.length - 1;
+ 		if ( falsegC < 9 ) {$('#hangman' + falsegC).removeClass('hide')};
  		var remLive = parseInt($('#remlive').html()) - 1;
  		$('#remlive').html(remLive);
  		$('#live' + falseg.length).addClass('off');
