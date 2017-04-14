@@ -14,7 +14,7 @@ $(window).on('load', function () {
 	//change the category
 	$('#category').change(function() {
 		changeCategory();	
-		updateObject(curObjName);
+		displayNextWordFor(curObjName);
 		loadObject(curObjName);
 	});
 
@@ -27,7 +27,7 @@ $(window).on('load', function () {
 
 	//Click the Next button listener	
 	$('#nextbtn').click(function(event){
-		updateObject(curObjName);
+		displayNextWordFor(curObjName);
 		event.preventDefault();		
 	});	
 
@@ -35,23 +35,13 @@ $(window).on('load', function () {
 	//keybord key listener
 	$(document).on('keyup', function(event){
 		if(HangMan.gameReady){
-			var legKey = true;
 			var letter = event.key.toLowerCase();
-			var obj = HangMan[curObjName];
 			if ( event.which < 65 || event.which > 90) {
-				legKey = false;
-			}else{
-				for( i = 0 ; i < obj.guesses.length ; i++){
-					if(letter === obj.guesses[i]){
-						legKey = false;
-						break;
-					};
-				};
-			};
-			if (legKey) {
-				processLetter(event.key.toLowerCase());
-			}else{
 				event.preventDefault();
+			} else if(!newLetter(letter)) {
+				event.preventDefault();
+			} else {
+				processLetter(letter);
 			};
 		}
 	});		
@@ -73,6 +63,18 @@ var gameObj = {
 	falseg : []
 };
 
+//Checking if the input letter is new.
+function newLetter(letter){
+	var valid = true;
+	for( i = 0 ; i < HangMan[curObjName].guesses.length ; i++){
+		if(letter === HangMan[curObjName].guesses[i]){
+			valid = false;
+			break;
+		};
+	};
+	return valid;
+};
+
 //Change Game to new category
 function changeCategory(){
 	curObjName = $('#category').val();
@@ -88,9 +90,10 @@ function createObjects(){
 	HangMan.namesObj.words = namesArr;
 	HangMan.colorsObj.words = colorsArr;
 	HangMan.statesObj.words = statesArr;
-	setObject('namesObj');
-	setObject('colorsObj');
-	setObject('statesObj');
+	HangMan.categories = categories;
+	for(i = 0 ; i < HangMan.categories.length ; i++){
+		setObject(HangMan.categories[i]);
+	}
 	var catIndex = Math.floor(Math.random() * categories.length);
 	$('#category option:eq(' + catIndex + ')').prop('selected', true)
 	changeCategory();
@@ -108,12 +111,12 @@ function setObject(objectName){
 	obj.lives = 10;
 	obj.guesses = [];
 	obj.trueg = [];
-	for ( i = 0 ; i < obj.word.length ; i++ ){obj.trueg.push('0')};
+	for ( j = 0 ; j < obj.word.length ; j++ ){obj.trueg.push('0')};
 	obj.falseg = [];
 };
 
-//Updating the current category object to next word
-function updateObject(objectName){
+//Updating the current category object to next word.
+function displayNextWordFor(objectName){
 	var obj = HangMan[objectName];
 	HangMan.gameReady = true;
 	obj.word = obj.words[Math.floor(Math.random() * obj.words.length)].toLowerCase();
@@ -125,11 +128,11 @@ function updateObject(objectName){
 	loadObject(objectName);
 };
 
-//Loading the current category object into the page
+//Loading the current category object into the page.
 function loadObject(objectName){
 	var obj = HangMan[objectName];
 	$('#catlabel').html($( "#category option:selected" ).text());
-	$('#word').html(loadWord(obj.word));
+	$('#word').html(loadWord(obj.word, true));
 	$('#letters').empty();
 	$('#letters').html(obj.word.length);
 	$('#wins').html(obj.wins);
@@ -140,22 +143,27 @@ function loadObject(objectName){
 	$('.hang').addClass('hide');
 };
 
+//Loading the word into the word panel.
+function loadWord(word, guess){
+	var span = "";
+	for (i=0;i<word.length;i++){
+		if(guess){
+			span = span + '<span>_</span>';
+		}else{
+			span = span + '<span>' + word[i] + '</span>';
+		}
+	};
+	return span;
+};
+
+//Return the number of times letter occurs in the word.
 function charOccur(string,char) {
 	var re = new RegExp(char,"gi");
 	re = string.match(re) === null ? "" : string.match(re);
 	return re.length;
 };
 
-//Loading the word into the word panel
-function loadWord(word){
-	var span = "";
-	for (i=0;i<word.length;i++){
-		span = span + '<span>_</span>';
-	}
-	return span;
-};
-
-//Return the indexes of a letter in a word
+//Return the indexes of a letter in a word.
 function findIndex(letter,word){
 	var indexArray = [];
 	for(var i = 0; i < word.length; i++){
@@ -166,7 +174,7 @@ function findIndex(letter,word){
 	return indexArray;
 };
 
-//Processing the input letter
+//Processing the input letter.
 function processLetter(letter){
 	var obj = HangMan[curObjName];
 	var word = obj.word;
@@ -210,6 +218,7 @@ function processLetter(letter){
 		wordfailed.play();
 		obj.loses++;
 		$('#loses').html(parseInt($('#loses').html()) + 1);
+		$('#word').html(loadWord(obj.word, false));
 		HangMan.gameReady = false;
 		$('#nextbtn').focus();
 	};
